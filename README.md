@@ -17,4 +17,36 @@ $ rails g devise:install
 $ rails g devise User
 $ rails db:migrate
 
-Seeting up the Bootstrap and UI header
+Setting up the Bootstrap and UI header!
+
+rails g model seller name description email user_id:integer
+rails db:migrate
+
+# models/seller.rb
+    belongs_to :user
+
+rails g migration AddNameToUsers name:string
+
+rails g migration AddSellerIdToProducts seller_id:integer
+
+rails db:migrate
+
+# models/product.rb
+    belongs_to :seller
+
+# application_controller.rb
+---
+    before_action :authenticate_user!
+    before_filter :configure_permitted_parameters, if: :devise_controller?
+
+    protected
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+    end
+
+- Need to name field in the new and edit form of user!
+<div class="field">
+  <%= f.label :name %><br />
+  <%= f.email_field :name, autofocus: true %>
+</div>

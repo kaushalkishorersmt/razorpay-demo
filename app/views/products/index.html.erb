@@ -1,2 +1,19 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+    <div class="col-xs-4">
+      <div class="product-place">
+      <img src="/images/product.jpg" width="230px" height="219px">
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="product-summary">
+        <h3><%= @product.title %></h3>
+        <p class="description">
+          <%= @product.description %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
