@@ -13,6 +13,24 @@
         <p class="description">
           <%= @product.description %>
         </p>
+        <h3>Automatic checkout</h3>
+        <form action="/purchase" method="POST">
+        <script
+            src="https://checkout.razorpay.com/v1/checkout.js"
+            data-key="rzp_test_vnG2Kc4tbXDgv4"
+            data-amount="<%= "#{@product.price}" %>"
+            data-name="<%= "#{@product.seller.name}" %>"
+            data-description="<%= "#{@product.description}" %>"
+            data-image="/images/product.jpg"
+
+            data-prefill.name="<%= "#{current_user.name}" %>"
+            data-prefill.email="<%= "#{current_user.email}" %>"
+            data-theme.color="#F37254"
+        >
+        </script>
+        <input type="hidden" value="<%= "#{@product.id}" %>" name="product_id">
+        <input type="hidden" value="<%= "#{current_user.id}" %>" name="user_id">
+        </form><br>
       </div>
     </div>
   </div>
